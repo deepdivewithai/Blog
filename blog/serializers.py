@@ -6,10 +6,10 @@ from django.core.exceptions import ValidationError
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    
+
     class Meta:
         model = User
-        fields = ('username','password')
+        fields = ('username','password', 'first_name', 'last_name')
 
         def validate_password(self, value):
             try:
@@ -23,15 +23,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
                 password=validated_data['password']
             )
             return user
-
-
-
-
-
-
-
-
-
 
 class PostListSerializer(serializers.ModelSerializer):
     class Meta:
